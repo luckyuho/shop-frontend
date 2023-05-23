@@ -7,9 +7,9 @@
     <div class="form-group">
       <label>郵件地址</label>
       <input
-      type="email"
+      type="text"
       class="form-control form-control-lg"
-      v-model="user.email"
+      v-model="user.name"
       />
     </div>
 
@@ -40,7 +40,7 @@ export default {
   data () {
     return {
       user: {
-        email: '',
+        name: '',
         password: ''
       }
     }
@@ -55,12 +55,12 @@ export default {
         const success = response.data.data
         if (success) {
           console.log('successfully register and login')
-          const token = response.data.token
+          const token = response.data.data.token
           // 將 token 寫入 Cookie
           document.cookie = `hexToken=${token}`
           vm.$router.push('/')
         } else {
-          console.log('duplicate email')
+          console.log('duplicate name')
         }
       })
     }

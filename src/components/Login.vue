@@ -7,9 +7,9 @@
     <div class="form-group">
       <label>郵件地址</label>
       <input
-      type="email"
+      type="text"
       class="form-control form-control-lg"
-      v-model="user.email"
+      v-model="user.name"
       />
     </div>
 
@@ -40,7 +40,7 @@ export default {
   data () {
     return {
       user: {
-        email: '',
+        name: '',
         password: ''
       }
     }
@@ -60,7 +60,7 @@ export default {
           document.cookie = `hexToken=${token}`
           vm.$router.push('/')
         } else {
-          console.log('wrong email or password')
+          console.log('wrong name or password')
         }
       })
     }

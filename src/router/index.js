@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
+import Oauth from '@/components/Oauth'
+import Redirect from '@/components/Redirect'
 
 import { checkIfUserIsAuthenticated } from '@/directive/auth'
 
@@ -27,12 +29,17 @@ const router = new Router({
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/oauth',
+      name: 'Oauth',
+      component: Oauth
+    },
+    {
+      path: '/redirect',
+      name: 'Redirect',
+      component: Redirect
     }
-    // {
-    //   path: '/oauth',
-    //   name: 'Oauth',
-    //   component: Oauth
-    // }
   ]
 })
 
