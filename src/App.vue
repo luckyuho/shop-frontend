@@ -1,21 +1,17 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
     <router-view/>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 export default {
-  name: 'App',
-  created () {
-    // const api = 'https://vue-course-api.hexschool.io/api/weitsai/products'
-    const api = `${process.env.APIPATH}/${process.env.CUSTOMPATH}`
-    axios.get(api).then((response) => {
-      console.log(response.data)
-    })
-  }
+  name: 'App'
 }
 </script>
 

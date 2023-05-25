@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Oauth from '@/components/Oauth'
 import Redirect from '@/components/Redirect'
+import Products from '@/components/Products'
+import Product from '@/components/Product'
 
 import { checkIfUserIsAuthenticated } from '@/directive/auth'
 
@@ -14,8 +15,16 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld,
+      name: 'Products',
+      component: Products,
+      meta: {
+        requiresAuth: true // 設置需要驗證的頁面
+      }
+    },
+    {
+      path: '/product',
+      name: 'Product',
+      component: Product,
       meta: {
         requiresAuth: true // 設置需要驗證的頁面
       }

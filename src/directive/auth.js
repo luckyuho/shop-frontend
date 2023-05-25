@@ -14,15 +14,26 @@ function checkJwt (token) {
   }
 }
 
+function getCookie (name) {
+  const cookies = document.cookie.split(';')
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim()
+    if (cookie.startsWith(name + '=')) {
+      return cookie.substring(name.length + 1)
+    }
+  }
+  return ''
+}
+
 export const checkIfUserIsAuthenticated = () => {
-  const myCookie = document.cookie || ''
-  if (myCookie === '') {
-    console.log('Cookie不存在')
+  const token = getCookie('hexToken') || ''
+  if (token === '') {
+    console.log('token不存在')
     return false
   }
-
-  const token = myCookie.split('; ').find((row) => row.startsWith('hexToken')).split('=')[1]
-  console.log('cookie:', token)
+  console.log('token', token)
+  // const token = myCookie.split('=')[1]
+  // console.log('cookie:', myCookie)
 
   const isAuthenticated = checkJwt(token)
 
