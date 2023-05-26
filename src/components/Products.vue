@@ -43,12 +43,12 @@ export default {
       console.log('connectVisa data = ', data)
       try {
         // this.connectVisa(merchantData)
-        this.$router.push({name: 'Product', query: { orderId: id }})
+        this.$router.push({path: '/product', query: { orderId: id }})
       } catch (error) {
         // 處理錯誤
         console.log(error)
       }
-    },
+    }
     // async connectVisa (merchantData) {
     //   try {
     //     await axios.post('https://ccore.newebpay.com/MPG/mpg_gateway', merchantData, {
@@ -63,20 +63,20 @@ export default {
     //     console.log(error)
     //   }
     // },
-    postBackendSql (id) {
-      const data = { id }
-      console.log('postBackendSql data = ', data)
-      axios.post('http://localhost:9432/api/v1/purchase', data)
-        .then(response => {
-          console.log(response.data.data)
-        }).catch(error => {
-          // 處理錯誤
-          console.error(error)
-        })
+    // postBackendSql (id) {
+    //   const data = { id }
+    //   console.log('postBackendSql data = ', data)
+    //   axios.post('http://localhost:9432/api/v1/purchase', data)
+    //     .then(response => {
+    //       console.log(response.data.data)
+    //     }).catch(error => {
+    //       // 處理錯誤
+    //       console.error(error)
+    //     })
 
-      // 重新整理
-      window.location.href = '/'
-    }
+    //   // 重新整理
+    //   window.location.href = '/'
+    // }
   }
 }
 </script>

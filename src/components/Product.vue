@@ -7,14 +7,14 @@
       style="background: #ffdcdf;border-radius: 8px;">
       <ul class="order-confirm-detail list-group mt-5 mb-3 px-3">
         <li class="list-group-item">Order Number: {{ $route.query.orderId }}</li>
-        <li class="list-group-item">Total Amount: {{ this.apiData.TradeInfo }}</li>
+        <li class="list-group-item">Total Amount: {{ this.apiData.MerchantID }}</li>
         <li class="list-group-item">Shipping Address: {{ this.apiData.Version }}</li>
       </ul>
-      <form name='newebpay' action='https://ccore.newebpay.com/MPG/mpg_gateway' method="POST">
-        <input type="text" name="MerchantID" value="123" hidden>
-        <input type="text" name="TradeInfo" value="123" hidden>
-        <input type="text" name="TradeSha" value="123" hidden>
-        <input type="text" name="Version" value="2.0" hidden>
+      <form name="newebpay" :action="apiData.VisaURL" method="POST">
+        <input type="text" name="MerchantID" :value="apiData.MerchantID" hidden>
+        <input type="text" name="TradeInfo" :value="apiData.TradeInfo" hidden>
+        <input type="text" name="TradeSha" :value="apiData.TradeSha" hidden>
+        <input type="text" name="Version" :value="apiData.Version" hidden>
         <a href="/" class="btn btn-outline-danger my-3 me-2">Back</a>
         <button type="submit" class="btn btn-danger my-3">Pay</button>
       </form>
@@ -24,7 +24,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import authApi from '@/directive/authApi'
+
 export default {
   name: 'Product',
   data () {
@@ -48,7 +49,7 @@ export default {
     async postBackendSql (id) {
       this.isLoading = true // 设置加载状态为 true
       const data = { id: id }
-      await axios.post('http://localhost:9432/api/v1/visa', data)
+      await authApi.post('v1/visa', data)
         .then(response => {
           this.apiData = response.data.data
           this.isLoading = false // 设置加载状态为 false

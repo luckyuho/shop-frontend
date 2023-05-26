@@ -14,7 +14,7 @@ function checkJwt (token) {
   }
 }
 
-function getCookie (name) {
+export function getCookie (name) {
   const cookies = document.cookie.split(';')
   for (let i = 0; i < cookies.length; i++) {
     const cookie = cookies[i].trim()
@@ -26,7 +26,7 @@ function getCookie (name) {
 }
 
 export const checkIfUserIsAuthenticated = () => {
-  const token = getCookie('hexToken') || ''
+  const token = getCookie('hexToken')
   if (token === '') {
     console.log('token不存在')
     return false
