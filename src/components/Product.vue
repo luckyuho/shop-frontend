@@ -1,16 +1,16 @@
 <template>
   <div class="container">
     <div class="order-confirm-title text-center mt-5">
-      <h1>Confirm Payment for Order #{{ $route.query.orderId }}</h1>
+      <h1>Confirm Payment for #{{ this.apiData.Name }}</h1>
     </div>
     <div class="order-confirm-body d-flex flex-column align-items-center mt-4"
       style="background: #ffdcdf;border-radius: 8px;">
       <ul class="order-confirm-detail list-group mt-5 mb-3 px-3">
-        <li class="list-group-item">Order Number: {{ $route.query.orderId }}</li>
-        <li class="list-group-item">Total Amount: {{ this.apiData.MerchantID }}</li>
-        <li class="list-group-item">Shipping Address: {{ this.apiData.Version }}</li>
+        <img :src="this.apiData.Image" class="image"/>
+        <li class="list-group-item">Name: {{ this.apiData.Name }}</li>
+        <li class="list-group-item">Price: {{ this.apiData.Price }}</li>
       </ul>
-      <form name="newebpay" :action="apiData.VisaURL" method="POST">
+      <form name="newebpay" action='https://ccore.newebpay.com/MPG/mpg_gateway' method="POST">
         <input type="text" name="MerchantID" :value="apiData.MerchantID" hidden>
         <input type="text" name="TradeInfo" :value="apiData.TradeInfo" hidden>
         <input type="text" name="TradeSha" :value="apiData.TradeSha" hidden>
@@ -48,7 +48,8 @@ export default {
   methods: {
     async postBackendSql (id) {
       this.isLoading = true // 设置加载状态为 true
-      const data = { id: id }
+      const data = { id: parseInt(id) }
+      // console.log('data id:', data)
       await authApi.post('v1/visa', data)
         .then(response => {
           this.apiData = response.data.data

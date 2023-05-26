@@ -39,11 +39,11 @@ export default {
       // postBackendSql(id)
     },
     async getMerchantDataAndConnectVisa (id) {
-      const data = { id }
-      console.log('connectVisa data = ', data)
+      // const data = { id }
+      // console.log('connectVisa data = ', data)
       try {
         // this.connectVisa(merchantData)
-        this.$router.push({path: '/product', query: { orderId: id }})
+        this.$router.push({path: '/product', query: { orderId: parseInt(id) }})
       } catch (error) {
         // 處理錯誤
         console.log(error)
